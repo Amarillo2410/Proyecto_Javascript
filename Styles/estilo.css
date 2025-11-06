@@ -1,0 +1,58 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header principal */
+section {
+  background-color: #1e3a56; /* Azul oscuro tipo Portal LMS */
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  height: 70px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Logo + Título */
+.titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo img.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.titulo h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+/* Menú */
+nav .menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+nav .menu li a {
+  text-decoration: none;
+  color: #dfe6f1;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+nav .menu li a:hover {
+  background-color: #2c4a6b;
+  color: #fff;
+}
