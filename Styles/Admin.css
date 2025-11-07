@@ -1,21 +1,14 @@
 .formulario {
-  margin: 30px auto;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 5px auto;
+    text-align: center;
+    margin-top: 45%;
 }
 
 .formulario input {
-  margin: 5px;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.formulario button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #1e3a56;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    margin: 4px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid blue;
 }

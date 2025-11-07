@@ -1,12 +1,10 @@
-/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family:sans-serif;
 }
 
-/* Header principal */
 section {
   background-color: #1e3a56; /* Azul oscuro tipo Portal LMS */
   color: #fff;
@@ -18,7 +16,6 @@ section {
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-/* Logo + Título */
 .titulo {
   display: flex;
   align-items: center;
@@ -36,7 +33,7 @@ section {
   font-weight: 700;
 }
 
-/* Menú */
+
 nav .menu {
   display: flex;
   gap: 25px;
