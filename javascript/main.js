@@ -31,12 +31,12 @@ class titulo extends HTMLElement {
 
       <section>
         <div class="titulo">
-          <img src="/assets/imagenes/ABC.png" alt="Logo">
+          <img src="/assets/imagenes/ABC.png" alt="ABC">
         </div>
         <nav>
-          <a href="index.html">Inicio</a>
-          <a href="/pages/Cursos.html">Servicios</a>
-          <a href="/pages/Aministrativos.html">Administrativos</a>
+          <a href="/index.html">Inicio</a>
+          <a href="/pages/Cursos.html">Cursos</a>
+          <a href="/pages/Administrativos.html">Administrativos</a>
         </nav>
       </section>
      `; 
