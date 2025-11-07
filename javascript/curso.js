@@ -1,4 +1,4 @@
-class curso extends HTMLElement{
+class Curso extends HTMLElement{
     constructor(){
     super();
     this.name;
@@ -49,4 +49,4 @@ class curso extends HTMLElement{
     
 }
 
-customElements.define('tarjetas', curso);
+customElements.define('tarjetas-cursos', Curso);
