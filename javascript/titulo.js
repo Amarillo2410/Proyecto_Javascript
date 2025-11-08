@@ -1,4 +1,4 @@
-class titulo extends HTMLElement {
+ class titulo extends HTMLElement {
     constructor() {
         super();
         const title = this.attachShadow({ mode: 'open' });
