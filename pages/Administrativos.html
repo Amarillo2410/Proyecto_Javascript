@@ -6,14 +6,58 @@
     <title>Document</title>
     <link rel="stylesheet" href="/Styles/estilo.css">
     <link rel="stylesheet" href="/Styles/Admin.css">
-    <script src="/javascript/main.js" defer ></script>
+    <script type="module" src="/javascript/main.js" defer ></script>
 </head>
 <body>
+
 <mi-titulo></mi-titulo>
 
     <div class="inputs">
         <input class="formulario" type="text" placeholder="ID">
         <input class="formulario" type="text" placeholder="Email">
+        <button id="entrarBtn">Iniciar sesion</button>
     </div>
+
+
+    <section class="oculto">
+
+    <div class="gestion-profesores">
+        <h2>Gestión de Profesores</h2>
+        <input id="profesorNombre" type="text" placeholder="Nombre">
+        <input id="profesorApellido" type="text" placeholder="Apellido">
+        <input id="profesorEmail" type="text" placeholder="Email">
+        <input id="profesorTelefono" type="text" placeholder="Teléfono">
+        <input id="fotoDocente" type="text" placeholder="URL Foto">
+        <input id="profesorArea" type="text" placeholder="Área Académica">
+        <button id="addProfesor">Agregar Profesor</button>
+        
+    </div>
+
+    <div class="gestion-cursos">
+        <h2>Gestión de Cursos</h2>
+        <input id="cursoCodigo" type="text" placeholder="Código">
+        <input id="cursoNombre" type="text" placeholder="Nombre del Curso">
+        <input id="cursoDescripcion" type="text" placeholder="Descripción">
+        <input id="cursoDocente" type="text" placeholder="Docente Encargado">
+        <button id="addCurso">Agregar Curso</button>
+       
+    </div>
+
+    <div class="gestion-administrativos">
+        <h2>Gestión de Administrativos</h2>
+        <input type="text" placeholder="Identificación">
+        <input type="text" placeholder="Nombre">
+        <input type="text" placeholder="Apellido">
+        <input type="text" placeholder="Email">
+        <input type="text" placeholder="Teléfono">
+        <input type="text" placeholder="Cargo">
+         <button id="addAdmin">Agregar Administrativo</button>
+    </div>
+
+</section>
+
+
+    <pie-pagina></pie-pagina>
+
 </body>
 </html>
