@@ -1,8 +1,7 @@
 import { read, write, DB_NAME } from './locastor.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // Botones para agregar
+ 
   const addAdminBtn = document.getElementById('addAdmin');
   const addProfesorBtn = document.getElementById('addProfesor');
   const addCursoBtn = document.getElementById('addCurso');
@@ -11,12 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (addProfesorBtn) addProfesorBtn.addEventListener('click', agregarProfesor);
   if (addCursoBtn) addCursoBtn.addEventListener('click', agregarCurso);
 
-  // Cargar tablas al iniciar
   cargarTablaAdministrativos();
   cargarTablaProfesores();
   cargarTablaCursos();
 
-  // ===== ADMINISTRATIVOS =====
   function agregarAdministrativo() {
     const inputs = document.querySelectorAll('.gestion-administrativos input');
     const [idInput, nombreInput, apellidoInput, emailInput, telefonoInput, cargoInput] = inputs;
@@ -138,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTablaAdministrativos();
   };
 
-  // ===== PROFESORES =====
   function agregarProfesor() {
     const nombreInput = document.getElementById('profesorNombre');
     const apellidoInput = document.getElementById('profesorApellido');
@@ -279,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarTablaProfesores();
   };
 
-  // ===== CURSOS =====
   function agregarCurso() {
     const codigoInput = document.getElementById('cursoCodigo');
     const nombreInput = document.getElementById('cursoNombre');

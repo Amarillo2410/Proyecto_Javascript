@@ -4,24 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración </title>
-    <script type="module" src="/javascript/main.js"></script>
+    <script type="module" src="/javascript/main-admin.js" defer></script>
     <link rel="stylesheet" href="/Styles/estilo.css">
     <link rel="stylesheet" href="/Styles/Admin.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - LMS</title>
-    <link rel="stylesheet" href="../styles/admin.css">
 </head>
 <body>
     <mi-titulo></mi-titulo>
 
     <div class="container">
-        <!-- SECCIÓN DE LOGIN -->
         <div class="inputs">
             <h2> Inicio de Sesión Admin</h2>
             <input type="text" class="formulario" placeholder="ID Administrativo">
@@ -33,7 +23,7 @@
         <section class="oculto">
             <div class="header-admin">
                 <h1> Panel de Administración</h1>
-                <button id="btnCerrarSesion">🚪 Cerrar Sesión</button>
+                <button id="btnCerrarSesion"> Cerrar Sesión</button>
             </div>
 
            
@@ -136,19 +126,6 @@
 
     <pie-pagina></pie-pagina>
 
-    <script>
-        function showTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
 
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(`tab-${tabName}`).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        window.showTab = showTab;
-    </script>
 </body>
 </html>

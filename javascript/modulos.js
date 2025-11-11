@@ -8,11 +8,10 @@ window.gestionarModulos = function(codigoCurso) {
   const curso = sistema.cursos.find(c => c.codigo === codigoCurso);
   
   if (!curso) {
-    alert('❌ Curso no encontrado');
+    alert(' Curso no encontrado');
     return;
   }
 
-  // Inicializar array de módulos si no existe
   if (!curso.modulos) {
     curso.modulos = [];
     write(DB_NAME, sistema);
@@ -22,7 +21,6 @@ window.gestionarModulos = function(codigoCurso) {
 };
 
 function mostrarModalModulos(curso) {
-  // Crear modal
   const modalHTML = `
     <div id="modalModulos" style="
       position: fixed;
@@ -89,7 +87,7 @@ function mostrarModalModulos(curso) {
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
-          ">➕ Agregar Módulo</button>
+          "> Agregar Módulo</button>
         </div>
 
         <div id="listaModulos"></div>
@@ -113,7 +111,7 @@ window.agregarModulo = function() {
   const descripcionInput = document.getElementById('moduloDescripcion');
 
   if (!codigoInput.value || !nombreInput.value || !descripcionInput.value) {
-    alert('⚠️ Por favor completa todos los campos');
+    alert(' Por favor completa todos los campos');
     return;
   }
 
@@ -123,7 +121,7 @@ window.agregarModulo = function() {
   // Verificar si ya existe el código
   const existe = curso.modulos.some(m => m.codigo === codigoInput.value);
   if (existe) {
-    alert('⚠️ Ya existe un módulo con ese código');
+    alert(' Ya existe un módulo con ese código');
     return;
   }
 
@@ -136,7 +134,7 @@ window.agregarModulo = function() {
 
   curso.modulos.push(nuevoModulo);
   write(DB_NAME, sistema);
-  alert('✅ Módulo agregado correctamente');
+  alert(' Módulo agregado correctamente');
 
   codigoInput.value = '';
   nombreInput.value = '';
@@ -171,7 +169,7 @@ function cargarListaModulos() {
               <p style="color: #666; margin: 5px 0;"><strong>Código:</strong> ${modulo.codigo}</p>
               <p style="color: #666; margin: 5px 0;">${modulo.descripcion}</p>
               <p style="color: #999; font-size: 0.9em; margin: 5px 0;">
-                📚 ${modulo.lecciones ? modulo.lecciones.length : 0} lecciones
+                 ${modulo.lecciones ? modulo.lecciones.length : 0} lecciones
               </p>
             </div>
             <div style="display: flex; gap: 10px; flex-direction: column;">
@@ -182,7 +180,7 @@ function cargarListaModulos() {
                 padding: 8px 15px;
                 border-radius: 5px;
                 cursor: pointer;
-              ">✏️ Editar</button>
+              "> Editar</button>
               <button onclick="eliminarModulo('${modulo.codigo}')" style="
                 background: #e74c3c;
                 color: white;
@@ -190,7 +188,7 @@ function cargarListaModulos() {
                 padding: 8px 15px;
                 border-radius: 5px;
                 cursor: pointer;
-              ">🗑️ Eliminar</button>
+              "> Eliminar</button>
               <button onclick="gestionarLecciones('${modulo.codigo}')" style="
                 background: #9b59b6;
                 color: white;
@@ -198,7 +196,7 @@ function cargarListaModulos() {
                 padding: 8px 15px;
                 border-radius: 5px;
                 cursor: pointer;
-              ">📝 Lecciones</button>
+              "> Lecciones</button>
             </div>
           </div>
         </div>
@@ -219,13 +217,13 @@ window.editarModulo = function(codigoModulo) {
   document.getElementById('moduloDescripcion').value = modulo.descripcion;
 
   const btnAgregar = document.getElementById('btnAgregarModulo');
-  btnAgregar.textContent = '💾 Guardar Cambios';
+  btnAgregar.textContent = ' Guardar Cambios';
   btnAgregar.onclick = () => {
     modulo.nombre = document.getElementById('moduloNombre').value;
     modulo.descripcion = document.getElementById('moduloDescripcion').value;
 
     write(DB_NAME, sistema);
-    alert('✅ Módulo actualizado');
+    alert(' Módulo actualizado');
 
     document.getElementById('moduloCodigo').value = '';
     document.getElementById('moduloNombre').value = '';

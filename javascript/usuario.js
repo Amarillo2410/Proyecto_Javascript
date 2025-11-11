@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnCerrarSesion.addEventListener('click', () => {
       if (confirm('¿Estás seguro de cerrar sesión?')) {
         logout();
-        alert('✅ Sesión cerrada correctamente');
+        alert('Sesión cerrada correctamente');
         window.location.reload();
       }
     });

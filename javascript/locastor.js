@@ -41,9 +41,9 @@ export function initDB(dbName = DB_NAME) {
     };
 
     write(dbName, sistema);
-    console.log('✅ Base de datos creada en localStorage');
+    console.log(' Base de datos creada en localStorage');
   } else {
-    console.log('✅ Base de datos cargada');
+    console.log(' Base de datos cargada');
   }
 
   return sistema;

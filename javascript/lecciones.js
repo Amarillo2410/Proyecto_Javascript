@@ -9,7 +9,7 @@ window.gestionarLecciones = function(codigoModulo) {
   const modulo = curso.modulos.find(m => m.codigo === codigoModulo);
   
   if (!modulo) {
-    alert('❌ Módulo no encontrado');
+    alert(' Módulo no encontrado');
     return;
   }
 
@@ -121,7 +121,7 @@ function mostrarModalLecciones(modulo) {
             border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
-          ">➕ Agregar Lección</button>
+          "> Agregar Lección</button>
         </div>
 
         <div id="listaLecciones"></div>
@@ -149,7 +149,7 @@ window.agregarLeccion = function() {
   const enlaceInput = document.getElementById('recursoEnlace');
 
   if (!tituloInput.value || !intensidadInput.value || !contenidoInput.value) {
-    alert('⚠️ Por favor completa los campos obligatorios (título, intensidad y contenido)');
+    alert(' Por favor completa los campos obligatorios (título, intensidad y contenido)');
     return;
   }
 
@@ -271,7 +271,6 @@ window.editarLeccion = function(idLeccion) {
   document.getElementById('leccionIntensidad').value = leccion.intensidadHoraria;
   document.getElementById('leccionContenido').value = leccion.contenido;
 
-  // Cargar multimedia existente
   const videoRecurso = leccion.multimedia.find(m => m.tipo === 'video');
   const pdfRecurso = leccion.multimedia.find(m => m.tipo === 'pdf');
   const imagenRecurso = leccion.multimedia.find(m => m.tipo === 'imagen');
