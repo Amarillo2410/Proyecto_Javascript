@@ -30,7 +30,7 @@ class pie extends HTMLElement {
 
 
         <div class="footer">
-            <p> 1998 - 2025 Relojería Tiempo Fino. Todos los derechos reservados.</p>
+            <p> 1998 - Escuela A B C.</p>
             <p>Creado por: Alejandro Montoya</p>
             <p>Síguenos en: 
             <a href="#">Facebook</a> | 

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(' Por favor completa todos los campos.');
       return;
     }
-º
+
     const existe = sistema.administrativos.some(admin => admin.id === idInput.value);
     if (existe) {
       alert(' Ya existe un administrativo con ese ID.');
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <td>${admin.telefono}</td>
               <td>${admin.cargo}</td>
               <td>
-                <button onclick="editarAdmin('${admin.id}')">✏️ Editar</button>
-                <button onclick="eliminarAdmin('${admin.id}')">🗑️ Eliminar</button>
+                <button onclick="editarAdmin('${admin.id}')"> Editar</button>
+                <button onclick="eliminarAdmin('${admin.id}')"> Eliminar</button>
               </td>
             </tr>
           `).join('')}
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cargoInput.value = admin.cargo;
 
     const btnAdd = document.getElementById('addAdmin');
-    btnAdd.textContent = '💾 Guardar Cambios';
+    btnAdd.textContent = ' Guardar Cambios';
     btnAdd.onclick = () => {
       admin.nombres = nombreInput.value;
       admin.apellidos = apellidoInput.value;
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       write(DB_NAME, sistema);
       alert(' Administrativo actualizado');
       inputs.forEach(input => input.value = '');
-      btnAdd.textContent = 'Agregar Administrativo';
+      btnAdd.textContent = ' Agregar Administrativo';
       btnAdd.onclick = agregarAdministrativo;
       cargarTablaAdministrativos();
     };
@@ -212,8 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <td>${prof.email}</td>
               <td>${prof.area}</td>
               <td>
-                <button onclick="editarProfesor('${prof.codigo}')">✏️ Editar</button>
-                <button onclick="eliminarProfesor('${prof.codigo}')">🗑️ Eliminar</button>
+                <button onclick="editarProfesor('${prof.codigo}')"> Editar</button>
+                <button onclick="eliminarProfesor('${prof.codigo}')"> Eliminar</button>
               </td>
             </tr>
           `).join('')}
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('fotoDocente').value = '';
       document.getElementById('profesorArea').value = '';
       
-      btnAdd.textContent = 'Agregar Profesor';
+      btnAdd.textContent = ' Agregar Profesor';
       btnAdd.onclick = agregarProfesor;
       cargarTablaProfesores();
     };
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.eliminarProfesor = function(codigo) {
     const sistema = read(DB_NAME);
     
-    // Validar si el profesor tiene cursos asignados
+
     const tieneCursos = sistema.cursos.some(curso => curso.docenteCodigo === codigo);
     
     if (tieneCursos) {
@@ -355,9 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${curso.descripcion}</td>
                 <td>${nombreDocente}</td>
                 <td>
-                  <button onclick="editarCurso('${curso.codigo}')">✏️ Editar</button>
-                  <button onclick="eliminarCurso('${curso.codigo}')">🗑️ Eliminar</button>
-                  <button onclick="gestionarModulos('${curso.codigo}')">📚 Módulos</button>
+                  <button onclick="editarCurso('${curso.codigo}')"> Editar</button>
+                  <button onclick="eliminarCurso('${curso.codigo}')"> Eliminar</button>
+                  <button onclick="gestionarModulos('${curso.codigo}')"> Módulos</button>
                 </td>
               </tr>
             `;
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('cursoDescripcion').value = '';
       document.getElementById('cursoDocente').value = '';
       
-      btnAdd.textContent = 'Agregar Curso';
+      btnAdd.textContent = ' Agregar Curso';
       btnAdd.onclick = agregarCurso;
       cargarTablaCursos();
     };
@@ -406,10 +406,5 @@ document.addEventListener('DOMContentLoaded', () => {
     write(DB_NAME, sistema);
     alert(' Curso eliminado');
     cargarTablaCursos();
-  };
-
-  window.gestionarModulos = function(codigoCurso) {
-    alert(`Gestión de módulos para curso ${codigoCurso} - Próximamente`);
-    
   };
 });

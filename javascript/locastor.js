@@ -1,10 +1,6 @@
-// Local Storage - Sistema de Gestión LMS
-
 export const DB_NAME = 'sistemaCursos';
+export const SESSION_KEY = 'loginActual';
 
-/**logout
- * Escribe datos en localStorage
- */
 export function write(dbName = DB_NAME, data) {
   try {
     localStorage.setItem(dbName, JSON.stringify(data));
@@ -15,9 +11,6 @@ export function write(dbName = DB_NAME, data) {
   }
 }
 
-/**
- * Lee datos de localStorage
- */
 export function read(dbName = DB_NAME) {
   try {
     const dataString = localStorage.getItem(dbName);
@@ -28,9 +21,6 @@ export function read(dbName = DB_NAME) {
   }
 }
 
-/**
- * Inicializa la base de datos con datos por defecto
- */
 export function initDB(dbName = DB_NAME) {
   let sistema = read(dbName);
 
@@ -47,22 +37,18 @@ export function initDB(dbName = DB_NAME) {
         }
       ],
       profesores: [],
-      cursos: [],
-      login: null
+      cursos: []
     };
 
     write(dbName, sistema);
-    console.log(' Base de datos creada en localStorage');
+    console.log('✅ Base de datos creada en localStorage');
   } else {
-    console.log(' Base de datos cargada');
+    console.log('✅ Base de datos cargada');
   }
 
   return sistema;
 }
 
-/**
- * Obtiene el sistema de forma segura
- */
 export function getSistema(dbName = DB_NAME) {
   let sistema = read(dbName);
   
@@ -74,36 +60,36 @@ export function getSistema(dbName = DB_NAME) {
   return sistema;
 }
 
-/**
- * Cierra la sesión del usuario
- */
-export function logout(dbName = DB_NAME) {
+export function guardarSesion(usuario) {
   try {
-    const sistema = read(dbName);
-    if (sistema) {
-      sistema.login = null;
-      write(dbName, sistema);
-      return true;
-    }
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(usuario));
+    return true;
+  } catch (error) {
+    console.error(' Error al guardar sesión:', error);
     return false;
+  }
+}
+
+export function logout() {
+  try {
+    sessionStorage.removeItem(SESSION_KEY);
+    return true;
   } catch (error) {
     console.error(' Error al cerrar sesión:', error);
     return false;
   }
 }
 
-/**
- * Verifica si hay una sesión activa
- */
-export function verificarSesion(dbName = DB_NAME) {
-  const sistema = read(dbName);
-  return sistema && sistema.login !== null;
+export function verificarSesion() {
+  return sessionStorage.getItem(SESSION_KEY) !== null;
 }
 
-/**
- * Obtiene el usuario logueado
- */
-export function getUsuarioActual(dbName = DB_NAME) {
-  const sistema = read(dbName);
-  return sistema ? sistema.login : null;
+export function getUsuarioActual() {
+  try {
+    const sesionString = sessionStorage.getItem(SESSION_KEY);
+    return sesionString ? JSON.parse(sesionString) : null;
+  } catch (error) {
+    console.error(' Error al obtener sesión:', error);
+    return null;
+  }
 }

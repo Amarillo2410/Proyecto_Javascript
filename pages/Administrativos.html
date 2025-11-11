@@ -3,64 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Panel de Administración </title>
+    <script type="module" src="/javascript/main.js"></script>
     <link rel="stylesheet" href="/Styles/estilo.css">
     <link rel="stylesheet" href="/Styles/Admin.css">
-    <script type="module" src="/javascript/main.js" defer ></script>
 </head>
 <body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - LMS</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+    <mi-titulo></mi-titulo>
 
-<mi-titulo></mi-titulo>
+    <div class="container">
+        <!-- SECCIÓN DE LOGIN -->
+        <div class="inputs">
+            <h2> Inicio de Sesión Admin</h2>
+            <input type="text" class="formulario" placeholder="ID Administrativo">
+            <input type="email" class="formulario" placeholder="Email">
+            <button id="entrar">Iniciar Sesión</button>
+        </div>
 
-    <div class="inputs">
-        <input class="formulario" type="text" placeholder="ID">
-        <input class="formulario" type="text" placeholder="Email">
-        <button id="entrar">Iniciar sesion</button>
-    </div>
-
-
-    <section class="oculto">
-
-    <div class="gestion-profesores">
-        <h2>Gestión de Profesores</h2>
-        <input id="profesorNombre" type="text" placeholder="Nombre">
-        <input id="profesorApellido" type="text" placeholder="Apellido">
-        <input id="profesorEmail" type="text" placeholder="Email">
-        <input id="profesorTelefono" type="text" placeholder="Teléfono">
-        <input id="fotoDocente" type="text" placeholder="URL Foto">
-        <input id="profesorArea" type="text" placeholder="Área Académica">
-        <button id="addProfesor">Agregar Profesor</button>
-        
-    </div>
-
-    <div class="gestion-cursos">
-        <h2>Gestión de Cursos</h2>
-        <input id="cursoCodigo" type="text" placeholder="Código">
-        <input id="cursoNombre" type="text" placeholder="Nombre del Curso">
-        <input id="cursoDescripcion" type="text" placeholder="Descripción">
-        <input id="cursoDocente" type="text" placeholder="Docente Encargado">
-        <button id="addCurso">Agregar Curso</button>
        
-    </div>
+        <section class="oculto">
+            <div class="header-admin">
+                <h1> Panel de Administración</h1>
+                <button id="btnCerrarSesion">🚪 Cerrar Sesión</button>
+            </div>
 
-    <div class="gestion-administrativos">
-        <h2>Gestión de Administrativos</h2>
-        <input type="text" placeholder="Identificación">
-        <input type="text" placeholder="Nombre">
-        <input type="text" placeholder="Apellido">
-        <input type="text" placeholder="Email">
-        <input type="text" placeholder="Teléfono">
-        <input type="text" placeholder="Cargo">
-         <button id="addAdmin">Agregar Administrativo</button>
-    </div>
+           
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('administrativos')">Administrativos</button>
+                <button class="tab-button" onclick="showTab('profesores')">Profesores</button>
+                <button class="tab-button" onclick="showTab('cursos')">Cursos</button>
+            </div>
 
-</section>
-    <div class="cerrar-sesion">
-      <button id="btnCerrarSesion">Cerrar Sesión</button>
-    </div>
+            <div id="tab-administrativos" class="tab-content active">
+                <div class="gestion-administrativos">
+                    <h3>Gestión de Administrativos</h3>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>ID:</label>
+                            <input type="text" placeholder=" 2410">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombres:</label>
+                            <input type="text" placeholder=" Andres">
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos:</label>
+                            <input type="text" placeholder=" Amarillo">
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" placeholder="admin@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono:</label>
+                            <input type="tel" placeholder="3001234567">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo:</label>
+                            <input type="text" placeholder=" SuperAdmin">
+                        </div>
+                    </div>
+                    <button id="addAdmin" class="btn-primary"> Agregar Administrativo</button>
+                </div>
+            </div>
 
+            <div id="tab-profesores" class="tab-content">
+                <div class="gestion-profesores">
+                    <h3>Gestión de Profesores</h3>
+                    <div class="grid-2">
+                        <div class="form-group">
+                            <label>Nombres:</label>
+                            <input type="text" id="profesorNombre" placeholder=" Juan">
+                        </div>
+                        <div class="form-group">
+                            <label>Apellidos:</label>
+                            <input type="text" id="profesorApellido" placeholder=" Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" id="profesorEmail" placeholder="profesor@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono:</label>
+                            <input type="tel" id="profesorTelefono" placeholder="3001234567">
+                        </div>
+                        <div class="form-group">
+                            <label>URL Foto:</label>
+                            <input type="url" id="fotoDocente" placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label>Área:</label>
+                            <input type="text" id="profesorArea" placeholder=" Matemáticas">
+                        </div>
+                    </div>
+                    <button id="addProfesor" class="btn-primary"> Agregar Profesor</button>
+                </div>
+            </div>
+
+            <div id="tab-cursos" class="tab-content">
+                <div class="gestion-cursos">
+                    <h3>Gestión de Cursos</h3>
+                    <div class="form-group">
+                        <label>Código del Curso:</label>
+                        <input type="text" id="cursoCodigo" placeholder=" MATH101">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Curso:</label>
+                        <input type="text" id="cursoNombre" placeholder=" Matemáticas Avanzadas">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea id="cursoDescripcion" placeholder="Descripción del curso..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Código del Docente:</label>
+                        <input type="text" id="cursoDocente" placeholder="Código del profesor">
+                    </div>
+                    <button id="addCurso" class="btn-primary"> Agregar Curso</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <pie-pagina></pie-pagina>
 
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        window.showTab = showTab;
+    </script>
 </body>
 </html>

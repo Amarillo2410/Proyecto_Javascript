@@ -1,4 +1,4 @@
-import { logout, DB_NAME } from './locastor.js';
+import { logout } from './locastor.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const btnCerrarSesion = document.getElementById('btnCerrarSesion');
@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnCerrarSesion) {
     btnCerrarSesion.addEventListener('click', () => {
       if (confirm('¿Estás seguro de cerrar sesión?')) {
-        logout(DB_NAME);
-        alert(' Sesión cerrada correctamente');
+        logout();
+        alert('✅ Sesión cerrada correctamente');
         window.location.reload();
       }
     });
