@@ -5,11 +5,17 @@ let moduloActual = null;
 window.gestionarLecciones = function(codigoModulo) {
   moduloActual = codigoModulo;
   const sistema = read(DB_NAME);
-  const curso = sistema.cursos.find(c => c.codigo === window.cursoActual || cursoActual);
+  const curso = sistema.cursos.find(c => c.modulos && c.modulos.some(m => m.codigo === codigoModulo));
+  
+  if (!curso) {
+    alert('❌ Curso no encontrado');
+    return;
+  }
+  
   const modulo = curso.modulos.find(m => m.codigo === codigoModulo);
   
   if (!modulo) {
-    alert(' Módulo no encontrado');
+    alert('❌ Módulo no encontrado');
     return;
   }
 
@@ -113,7 +119,7 @@ function mostrarModalLecciones(modulo) {
             ">
           </div>
 
-          <button id="btnAgregarLeccion" onclick="agregarLeccion()" style="
+          <button id="btnAgregarLeccion" style="
             background: #27ae60;
             color: white;
             border: none;
@@ -121,7 +127,7 @@ function mostrarModalLecciones(modulo) {
             border-radius: 5px;
             cursor: pointer;
             margin-top: 15px;
-          "> Agregar Lección</button>
+          ">➕ Agregar Lección</button>
         </div>
 
         <div id="listaLecciones"></div>
@@ -130,6 +136,13 @@ function mostrarModalLecciones(modulo) {
   `;
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
+  
+  // CRÍTICO: Asignar el evento DESPUÉS de crear el modal en el DOM
+  const btnAgregar = document.getElementById('btnAgregarLeccion');
+  if (btnAgregar) {
+    btnAgregar.addEventListener('click', agregarLeccion);
+  }
+  
   cargarListaLecciones();
 }
 
@@ -139,7 +152,7 @@ window.cerrarModalLecciones = function() {
   moduloActual = null;
 };
 
-window.agregarLeccion = function() {
+function agregarLeccion() {
   const tituloInput = document.getElementById('leccionTitulo');
   const intensidadInput = document.getElementById('leccionIntensidad');
   const contenidoInput = document.getElementById('leccionContenido');
@@ -149,13 +162,24 @@ window.agregarLeccion = function() {
   const enlaceInput = document.getElementById('recursoEnlace');
 
   if (!tituloInput.value || !intensidadInput.value || !contenidoInput.value) {
-    alert(' Por favor completa los campos obligatorios (título, intensidad y contenido)');
+    alert('⚠️ Por favor completa los campos obligatorios (título, intensidad y contenido)');
     return;
   }
 
   const sistema = read(DB_NAME);
-  const curso = sistema.cursos.find(c => c.modulos.some(m => m.codigo === moduloActual));
+  const curso = sistema.cursos.find(c => c.modulos && c.modulos.some(m => m.codigo === moduloActual));
+  
+  if (!curso) {
+    alert('❌ Error: No se encontró el curso');
+    return;
+  }
+  
   const modulo = curso.modulos.find(m => m.codigo === moduloActual);
+  
+  if (!modulo) {
+    alert('❌ Error: No se encontró el módulo');
+    return;
+  }
 
   const multimedia = [];
   if (videoInput.value) multimedia.push({ tipo: 'video', url: videoInput.value });
@@ -184,13 +208,18 @@ window.agregarLeccion = function() {
   enlaceInput.value = '';
 
   cargarListaLecciones();
-};
+}
 
 function cargarListaLecciones() {
   const sistema = read(DB_NAME);
-  const curso = sistema.cursos.find(c => c.modulos.some(m => m.codigo === moduloActual));
+  const curso = sistema.cursos.find(c => c.modulos && c.modulos.some(m => m.codigo === moduloActual));
+  
+  if (!curso) return;
+  
   const modulo = curso.modulos.find(m => m.codigo === moduloActual);
   const container = document.getElementById('listaLecciones');
+
+  if (!container) return;
 
   if (!modulo.lecciones || modulo.lecciones.length === 0) {
     container.innerHTML = '<p style="text-align: center; color: #999;">No hay lecciones creadas</p>';
@@ -218,7 +247,7 @@ function cargarListaLecciones() {
               </p>
               ${leccion.multimedia && leccion.multimedia.length > 0 ? `
                 <div style="margin-top: 15px;">
-                  <strong>📎 Recursos Multimedia:</strong>
+                  <strong>🔎 Recursos Multimedia:</strong>
                   <ul style="margin: 5px 0; padding-left: 20px;">
                     ${leccion.multimedia.map(recurso => `
                       <li>
@@ -261,7 +290,10 @@ function cargarListaLecciones() {
 
 window.editarLeccion = function(idLeccion) {
   const sistema = read(DB_NAME);
-  const curso = sistema.cursos.find(c => c.modulos.some(m => m.codigo === moduloActual));
+  const curso = sistema.cursos.find(c => c.modulos && c.modulos.some(m => m.codigo === moduloActual));
+  
+  if (!curso) return;
+  
   const modulo = curso.modulos.find(m => m.codigo === moduloActual);
   const leccion = modulo.lecciones.find(l => l.id === idLeccion);
 
@@ -276,14 +308,19 @@ window.editarLeccion = function(idLeccion) {
   const imagenRecurso = leccion.multimedia.find(m => m.tipo === 'imagen');
   const enlaceRecurso = leccion.multimedia.find(m => m.tipo === 'enlace');
 
-  if (videoRecurso) document.getElementById('recursoVideo').value = videoRecurso.url;
-  if (pdfRecurso) document.getElementById('recursoPDF').value = pdfRecurso.url;
-  if (imagenRecurso) document.getElementById('recursoImagen').value = imagenRecurso.url;
-  if (enlaceRecurso) document.getElementById('recursoEnlace').value = enlaceRecurso.url;
+  document.getElementById('recursoVideo').value = videoRecurso ? videoRecurso.url : '';
+  document.getElementById('recursoPDF').value = pdfRecurso ? pdfRecurso.url : '';
+  document.getElementById('recursoImagen').value = imagenRecurso ? imagenRecurso.url : '';
+  document.getElementById('recursoEnlace').value = enlaceRecurso ? enlaceRecurso.url : '';
 
   const btnAgregar = document.getElementById('btnAgregarLeccion');
   btnAgregar.textContent = '💾 Guardar Cambios';
-  btnAgregar.onclick = () => {
+  
+  // Remover el evento anterior
+  btnAgregar.replaceWith(btnAgregar.cloneNode(true));
+  const nuevoBtn = document.getElementById('btnAgregarLeccion');
+  
+  nuevoBtn.addEventListener('click', () => {
     leccion.titulo = document.getElementById('leccionTitulo').value;
     leccion.intensidadHoraria = parseInt(document.getElementById('leccionIntensidad').value);
     leccion.contenido = document.getElementById('leccionContenido').value;
@@ -312,21 +349,27 @@ window.editarLeccion = function(idLeccion) {
     document.getElementById('recursoImagen').value = '';
     document.getElementById('recursoEnlace').value = '';
 
-    btnAgregar.textContent = ' Agregar Lección';
-    btnAgregar.onclick = agregarLeccion;
+    nuevoBtn.textContent = '➕ Agregar Lección';
+    nuevoBtn.replaceWith(nuevoBtn.cloneNode(true));
+    const btnFinal = document.getElementById('btnAgregarLeccion');
+    btnFinal.addEventListener('click', agregarLeccion);
+    
     cargarListaLecciones();
-  };
+  });
 };
 
 window.eliminarLeccion = function(idLeccion) {
   if (!confirm('¿Eliminar esta lección?')) return;
 
   const sistema = read(DB_NAME);
-  const curso = sistema.cursos.find(c => c.modulos.some(m => m.codigo === moduloActual));
+  const curso = sistema.cursos.find(c => c.modulos && c.modulos.some(m => m.codigo === moduloActual));
+  
+  if (!curso) return;
+  
   const modulo = curso.modulos.find(m => m.codigo === moduloActual);
   modulo.lecciones = modulo.lecciones.filter(l => l.id !== idLeccion);
 
   write(DB_NAME, sistema);
-  alert(' Lección eliminada');
+  alert('🗑️ Lección eliminada');
   cargarListaLecciones();
 };

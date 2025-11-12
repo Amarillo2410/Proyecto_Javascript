@@ -5,27 +5,33 @@ class pie extends HTMLElement {
     footer.innerHTML = `
     <style>
         footer {
+        footer {
             background-color: #222;
-                color: #fff;
-                text-align: center;
-                padding: 25px 10px;
-                font-family: Arial, sans-serif;
-                font-size: 14px;
-            }
+            color: #fff;
+            text-align: center;
+            padding: 25px 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            width: 100%;
+            margin-top: auto;
+            position: relative;
+            bottom: 0;
+            left: 0;
+        }
 
-            footer a {
-                color: #fff;
-                text-decoration: none;
-                margin: 0 5px;
-            }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
 
-            footer a:hover {
-                text-decoration: underline;
-            }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-            .footer-content p {
-                margin: 5px 0;
-            }
+        .footer-content p {
+            margin: 5px 0;
+        }
         </style>
 
 

@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Visualización de Cursos - Escuela ABC</title>
+    <script type="module" src="/javascript/main.js" defer></script>
+    <script type="module" src="/javascript/newcursos.js" defer></script>
     <link rel="stylesheet" href="/Styles/estilo.css">
-    <script type="module" src="/javascript/main.js" defer ></script>
+    <link rel="stylesheet" href="/Styles/cursos.css">
 </head>
 <body>
     <mi-titulo></mi-titulo>
 
+    <div class="contenedor-principal">
+        <header class="header-visualizacion">
+            <h1>📚 Catálogo de Cursos</h1>
+            <p>Explora nuestros cursos disponibles</p>
+        </header>
 
+        <div id="contenedorCursos" class="grid-cursos">
+            <!-- Los cursos se cargarán dinámicamente aquí -->
+        </div>
+
+        <!-- Modal para ver detalles del curso -->
+        <div id="modalDetalleCurso" class="modal-overlay">
+            <div class="modal-contenido">
+                <button class="modal-cerrar" onclick="cerrarModalDetalle()">✖</button>
+                <div id="detallesCurso">
+                    <!-- El contenido se cargará dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <pie-pagina></pie-pagina>
 </body>
