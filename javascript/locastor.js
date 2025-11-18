@@ -36,7 +36,16 @@ export function initDB(dbName = DB_NAME) {
           cargo: 'SuperAdmin',
         }
       ],
-      profesores: [],
+      profesores: [
+        {
+          id:'2012',
+          email:'profe@gmail.com',
+          nombre:'julio',
+          apellidos:'profe',
+          telefono:'322240208',
+          cargo:'profe#1'
+        }
+      ],
       cursos: []
     };
 

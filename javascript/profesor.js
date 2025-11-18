@@ -29,16 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sistema = read();
 
-    const adminEncontrado = sistema.administrativos.find(
-      (admin) => admin.id === id && admin.email === email
+    const profeEncontrado = sistema.profesores.find(
+      (profe) => profe.id === id && profe.email === email
     );
 
-    if (adminEncontrado) {
+    if (profeEncontrado) {
       alert(" Sesión iniciada correctamente");
-      console.log("Admin autenticado:", adminEncontrado);
+      console.log("Admin autenticado:", profeEncontrado);
 
       
-      guardarSesion(adminEncontrado);
+      guardarSesion(profeEncontrado);
 
       
       loginSection.style.display = "none";
@@ -46,23 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       alert(" Usuario no encontrado. Verifica tus credenciales.");
     }
-    
-    const sistem = read();
-
-    const profeEncontrado = sistem.profesores.find(
-     (profe) => profe.id === id && profe.email === email
-   );
-   
-   if (profeEncontrado) {
-     alert(" Sesión iniciada correctamente");
-     console.log("Admin autenticado:", profeEncontrado);
-   
-     
-     guardarSesion(profeEncontrado);
-   
-    
-    
-}  });
+  });
 
   function showTab(tabName) {
     const tabs = document.querySelectorAll('.tab-content');
@@ -75,4 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
  }
 
  window.showTab = showTab;
+
 });

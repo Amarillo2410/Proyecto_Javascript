@@ -37,6 +37,7 @@
           <a href="/index.html">Inicio</a>
           <a href="/pages/Cursos.html">Cursos</a>
           <a href="/pages/Administrativos.html">Administrativos</a>
+          <a href="/pages/profesores.html"> profesores </a>
         </nav>
       </section>
      `; 
